@@ -94,7 +94,7 @@
             <h2>发问题</h2>
             <div class="inputques">
                 <div class="quesdetail mbot"><span class="ques-label">分类：</span>
-                    <a :class="{onactive: show === 0}" href="javascript:;" @click="getCategory(0)">技术问答</a><a href="javascript:;" :class="{onactive: show ===1}" @click="getCategory(1)">技术分享</a><a href="javascript:;" :class="{onactive: show ===2}" @click="getCategory(2)">活动建议</a></div>
+                    <a :class="{onactive: show === 0}" href="javascript:;" @click="getCategory(0)">技术问答</a><a href="javascript:;" :class="{onactive: show ===1}" @click="getCategory(1)">技术分享</a></div>
                 <input type="text" style="display: none" id="category" name="category"/>
                 <div class="quesdetail mbottom"><span class="ques-label fl">题目：</span>
                     <textarea rows="" cols=""detect-change="off" v-model="title"

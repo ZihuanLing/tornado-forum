@@ -27,7 +27,10 @@ new Vue({
     methods:{
         getquestions () {
             let that = this;
-            axios.get("http://39.104.13.197:8000/questions/",{
+            axios.get("http://127.0.0.1/questions/",{
+                headers: {
+                    tsessionid: store.state.tsessionid
+                },
                 params:{
                     "o":"new",
                     "c":""

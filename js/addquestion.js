@@ -2,13 +2,13 @@
  * Created by Think on 2018/8/11.
  */
 
-axios.defaults.baseURL = 'http://39.104.13.197:8000/';
+axios.defaults.baseURL = 'http://127.0.0.1/';
 
 let vm = new Vue({
     el:"#content",
     data:{
         show:0,
-        category:'',
+        category:'技术问答',
         title:'',
         content:'',
         file:'',
@@ -47,7 +47,7 @@ let vm = new Vue({
             formData.append('image', this.file);
             axios.post('questions/',formData,{
                 headers:{
-                    tsessionid:store.state.tesssionid
+                    tsessionid:store.state.tsessionid
                 }
             }).then((req)=>{
                 alert("成功");
@@ -64,9 +64,6 @@ let vm = new Vue({
             }else if(cate === 1){
                 that.category = "技术分享";
                 that.show = 1
-            }else if(cate === 2){
-                that.category = "活动建议";
-                that.show = 2
             }
         }
     }

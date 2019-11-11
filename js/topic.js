@@ -3,12 +3,12 @@
  */
 
 
-axios.defaults.baseURL = 'http://39.104.13.197:8000/';
+axios.defaults.baseURL = 'http://127.0.0.1/';
 
 new Vue({
    el:"#content" ,
     data:{
-        urlPrv:"http://39.104.13.197:8000/",
+        urlPrv:"http://127.0.0.1/",
         // comments:[],
         thisPost:{},
         thiscomment:{},
@@ -30,13 +30,13 @@ new Vue({
         //获取这个帖子
         getPost:function(){
             let that = this;
-            if(!store.state.tesssionid){
+            if(!store.state.tsessionid){
                 location.href = "../../login.html"
             }
             that.postId = location.href.split('=')[1];
             axios.get("/posts/"+that.postId+"/",{
                 headers:{
-                    tsessionid: store.state.tesssionid
+                    tsessionid: store.state.tsessionid
                 }
             }).then((req)=>{
                 that.thisPost = req.data;
@@ -51,7 +51,7 @@ new Vue({
             let that = this;
             axios.get("posts/"+that.postId+"/comments/",{
                 headers:{
-                    tsessionid: store.state.tesssionid
+                    tsessionid: store.state.tsessionid
                 }
             }).then((req)=>{
                 that.thiscomment = req.data;
@@ -79,7 +79,7 @@ new Vue({
                 "replyed_user":that.thisPost.user.id
             },{
                 headers:{
-                    tsessionid: store.state.tesssionid
+                    tsessionid: store.state.tsessionid
                 }
             }).then((req)=>{
                 that.content = '';
@@ -91,7 +91,7 @@ new Vue({
             let that = this;
             axios.post('/comments/'+id+'/likes/',{},{
                 headers:{
-                    tsessionid: store.state.tesssionid
+                    tsessionid: store.state.tsessionid
                 }
             }).then((req)=>{
                 that.like = true;
@@ -106,7 +106,7 @@ new Vue({
                 "content":that.commentContent
             },{
                 headers:{
-                    tsessionid: store.state.tesssionid
+                    tsessionid: store.state.tsessionid
                 }
             }).then((req)=>{
                 that.getComments();
@@ -119,7 +119,7 @@ new Vue({
             let that = this;
             axios.get('/comments/'+id+'/replys/',{
                 headers:{
-                    tsessionid: store.state.tesssionid
+                    tsessionid: store.state.tsessionid
                 }
             }).then((req)=>{
                 Vue.set(that.thiscomment[index],"commToComm",req.data);

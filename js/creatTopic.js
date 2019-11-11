@@ -7,7 +7,8 @@ var html;
 ue.ready(function () {
     html = ue.getContent();
 });
-axios.defaults.baseURL = 'http://127.0.0.1:8888/';
+axios.defaults.baseURL = 'http://127.0.0.1/';
+// axios.defaults.baseURL = 'http://127.0.0.1:8888/';
 
 let vm = new Vue({
     el:"#content",
