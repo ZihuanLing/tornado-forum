@@ -4,7 +4,7 @@
 
 
 
-axios.defaults.baseURL = 'http://39.104.13.197:8000/';
+axios.defaults.baseURL = 'http://127.0.0.1/';
 
 
 let vm = new Vue({
@@ -67,39 +67,40 @@ let vm = new Vue({
         },
         getQuestions:function () {
             const that = this;
-            axios.get("questions/",{
+            axios.get("questions/" + that.questionId,{
+                headers: {
+                    "tsessionid": store.state.tsessionid,
+                },
                 params : {
                     "o": "new",
                     "c": "技术问答",
                 }
-            })
-                .then(function(response){
-                    that.questions = response.data[0]
-                })
-                .catch(function(err){
-                });
+            }).then(function(response){
+                    that.questions = response.data
+                }).catch(function(err){
+            });
         },
-        getanswer(){
+        getanswer: function () {
             const that = this;
-                axios.get('questions/'+that.questionId+'/answers/',{
-                    headers:{
-                        "tsessionid": store.state.tesssionid,
+            axios.get('questions/' + that.questionId + '/answers/', {
+                headers: {
+                    "tsessionid": store.state.tsessionid,
+                }
+            })
+                .then(function (req) {
+                    that.answers = req.data;
+                    for (let i = 0; i <= req.data.length; i++) {
+                        Vue.set(that.answers[i], 'showComment', '展开评论');
                     }
                 })
-                    .then(function(req){
-                        that.answers = req.data;
-                        for(let i = 0; i <= req.data.length;i++){
-                            Vue.set(that.answers[i],'showComment' , '展开评论');
-                        }
-                    })
-            },
+        },
         addanswer(){
             const that = this;
             axios.post("questions/"+that.questionId+"/answers/",{
                 "content":that.content
             },{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             }).then((req)=>{
                 that.getanswer();
@@ -117,7 +118,7 @@ let vm = new Vue({
                     "content":that.replyContent
                 },{
                     headers:{
-                        "tsessionid": store.state.tesssionid,
+                        "tsessionid": store.state.tsessionid,
                     }
                 }).then((req)=>{
                     that.replyContent = '';
@@ -130,7 +131,7 @@ let vm = new Vue({
                     "content":that.replyContent
                 },{
                     headers:{
-                        "tsessionid": store.state.tesssionid,
+                        "tsessionid": store.state.tsessionid,
                     }
                 }).then((req)=>{
                     that.replyContent = '';
@@ -143,10 +144,10 @@ let vm = new Vue({
             let that = this;
             axios.get('/answers/'+id+'/replys/',{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             }).then((req)=>{
-                req.data.unshift(1);
+                // req.data.unshift(1);
                 that.replies = req.data;
             }).catch((err)=>{
                 console.log(err)
@@ -156,7 +157,6 @@ let vm = new Vue({
             this.replyer = `回复${replyedUser}`;
             this.answerId = replyId;
         },
-
         }
 
 })
