@@ -116,7 +116,7 @@
                         <form class="infobox">
                             <dl>
                                 <dt><span>*</span>登录账号：</dt>
-                                <dd>18227618966                            </dd>
+                                <dd>{{ userInfo.mobile }}</dd>
                             </dl>
                             <dl>
                                 <dt><span>*</span>性别：</dt>
@@ -198,7 +198,7 @@
                                         </div>
                                     </dd>
                                 </dl>
-                                <button class="Save sel_w btn_big_r" @click="postImg">保存</button>
+                                <button class="Save sel_w btn_big_r" type="submit" @click="postImg">保存</button>
                                 <style>
                                     .btn_big_r{
                                         border: none;

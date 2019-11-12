@@ -2004,11 +2004,12 @@ var arrAll =
     ];
 
 
-axios.defaults.baseURL = 'http://39.104.13.197:8000';
+axios.defaults.baseURL = 'http://127.0.0.1';
 
 let vm = new Vue({
     el:'#content',
     data:{
+        infoLoaded: false,
         userInfo:{},
         nick_name:"",
         desc:"",
@@ -2047,11 +2048,11 @@ let vm = new Vue({
     },
     watch: {
         prov: function () {
-            this.updateCitys();
-            this.updateDistricts();
+            this.updateCity();
+            this.updateDistrict();
         },
         city: function () {
-            this.updateDistricts();
+            this.updateDistrict();
         }
     },
     beforeMount: function () {
@@ -2110,7 +2111,7 @@ let vm = new Vue({
             let that = this;
             axios.get("/info/",{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             }).then((res)=>{
                 that.userInfo = res.data;
@@ -2145,7 +2146,7 @@ let vm = new Vue({
                     "desc":that.userInfo.desc
                 },{
                     headers:{
-                        "tsessionid": store.state.tesssionid,
+                        "tsessionid": store.state.tsessionid,
                     }
                 }).then((res)=>{
                     alert('修改信息成功')
@@ -2179,10 +2180,11 @@ let vm = new Vue({
             let that = this;
             axios.get('/headimages/',{
                 headers:{
-                    "tsessionid": store.state.tesssionid
+                    "tsessionid": store.state.tsessionid
                 }
             }).then((res)=>{
-                that.image = axios.defaults.baseURL + res.data.image
+                if (res.data.image != '')
+                    that.image = axios.defaults.baseURL + res.data.image
             })
         },
         changeImage: function(e){
@@ -2192,15 +2194,15 @@ let vm = new Vue({
             let that = this;
             let formData = new FormData();
             formData.append('image', this.file);
-            axios.post("/headimages/",formData
-            ,{
+            axios.post("/headimages/",formData,{
                     headers:{
-                        "tsessionid": store.state.tesssionid
+                        "tsessionid": store.state.tsessionid
                     }
             }).then((res)=>{
                 that.image = axios.defaults.baseURL + res.data.image
             }).catch((err)=>{
-                console.log(err)
+                console.log(err.response.status)
+                console.log(err.response.data)
             })
         },
 
@@ -2217,7 +2219,7 @@ let vm = new Vue({
                     "confirm_password":that.confirmpsw
                 },{
                     headers:{
-                        "tsessionid": store.state.tesssionid,
+                        "tsessionid": store.state.tsessionid,
                     }
                 }).then((res)=>{
                     alert("密码修改成功！");
@@ -2226,8 +2228,6 @@ let vm = new Vue({
                     alert(err)
                 })
             }
-
-
         }
     }
 });
