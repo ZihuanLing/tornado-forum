@@ -1,5 +1,5 @@
 
-axios.defaults.baseURL = 'http://39.104.13.197:8000';
+axios.defaults.baseURL = 'http://127.0.0.1';
 let vm = new Vue({
    el:'#content',
    data:{
@@ -34,7 +34,7 @@ let vm = new Vue({
             let that = this;
             axios.get('/messages/?message_type=1',{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             }).then((res)=>{
                     that.commentList = res.data;
@@ -49,10 +49,9 @@ let vm = new Vue({
 
         getchack(){
             let that = this;
-            console.log(store.state.tesssionid);
             axios.get('/applys/',{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             })
                 .then((res)=>{
@@ -66,7 +65,7 @@ let vm = new Vue({
             //获取点赞
             axios.get('/messages/?message_type=3&message_type=2&message_type=5',{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             },{
 
@@ -125,12 +124,12 @@ let vm = new Vue({
         },
         doAllow(){
             let that = this ;
-            axios.patch('/members/'+that.applyId+'/',{
+            axios.patch('/applys/'+that.applyId+'/',{
                 "status":'agree',
                 "handle_msg":''
             },{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             }).then((res)=>{
                 alert('已通过');
@@ -143,12 +142,12 @@ let vm = new Vue({
         },
         doRefuse(){
             let that = this ;
-            axios.patch('/members/'+that.applyId+'/',{
+            axios.patch('/applys/'+that.applyId+'/',{
                   "status":'refuse',
-                    "handle_msg":that.refuseContent
+                    "handle_msg":that.refuseContent,
             },{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             }).then((res)=>{
                alert('已拒绝');
