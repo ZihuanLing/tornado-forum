@@ -11,6 +11,23 @@ var vm = new Vue({
         datapsw:'',
         datamobile:''
     },
+    created(){
+        let tsessionid = this.$cookies.get("tsessionid");
+        console.log(tsessionid)
+        if (tsessionid){
+            axios.get("/", {
+                headers: {
+                    "tsessionid": tsessionid
+                }
+            }).then(response => {
+                console.log(response)
+                re_data = response.data;
+                if (re_data.verify_status == 'OK'){
+                    location.href = re_data.redirect;
+                }
+            })
+        }
+    },
     methods:{
         login: function() {
             // this.getcookie();
