@@ -26,7 +26,7 @@ let vm = new Vue({
     created(){
         this.showname();
         this.getGroup("");
-        this.hottGroup("new")
+        this.hotGroup("new")
     },
     methods:{
         getGroup(category){
@@ -34,7 +34,9 @@ let vm = new Vue({
             that.category = category;
             axios.get('/groups/?c='+category,{
                 }).then(function (req) {
-                that.groupMsg = req.data;
+                    console.log("get groups ok.");
+                    console.log(req.data);
+                    that.groupMsg = req.data;
                 if(store.state.tesssionid){
                     that.notLogin = true
                 }else {
@@ -72,7 +74,7 @@ let vm = new Vue({
                 that.hotnumber = false
             }
         },
-        hottGroup(category){
+        hotGroup(category){
             let that = this;
             axios.get('/groups/?limit=5',{
             }).then(function (req) {
