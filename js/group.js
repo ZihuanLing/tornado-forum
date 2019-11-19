@@ -1,7 +1,7 @@
 /**
  * Created by Think on 2018/7/14.
  */
-axios.defaults.baseURL = 'http://127.0.0.1:8888/';
+axios.defaults.baseURL = 'http://127.0.0.1/';
 let vm = new Vue({
     el:"#content",
     data:{

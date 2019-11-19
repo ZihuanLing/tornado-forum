@@ -24,7 +24,7 @@ $(document).ready(
     //        headers:{
     //            "tsessionid":token
     //        },
-    //        url:"http://127.0.0.1:8000/groups/8/"
+    //        url:"http://127.0.0.1/groups/8/"
     //    })
     //});
     //点击小组，跳转到小组的posts页面
@@ -37,7 +37,7 @@ $(document).ready(
         $.ajax({
             cache: false,
             dataType: 'json',
-            url: "http://127.0.0.1:8000/groups/1/",
+            url: "http://127.0.0.1/groups/1/",
             type: 'get',
             contentType: "application/json; charset=utf-8",
             async: true,
@@ -66,7 +66,7 @@ new Vue({
         $.ajax({
             cache: false,
             dataType: 'json',
-            url: "http://127.0.0.1:8000/users/" + userId + "/groups/",
+            url: "http://127.0.0.1/users/" + userId + "/groups/",
             type: 'get',
             contentType: "application/json; charset=utf-8",
             async: true,
@@ -82,7 +82,7 @@ new Vue({
                         headers: {
                             "tsessionid": token
                         },
-                        url: "http://127.0.0.1:8000/groups/" + id + "/"
+                        url: "http://127.0.0.1/groups/" + id + "/"
                     })
                 }
             }
