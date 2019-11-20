@@ -47,7 +47,7 @@ let vm = new Vue({
         },
         upload: function(event){
            let that = this;
-           tsessionid = this.$cookies.get('tsessionid');
+           let tsessionid = this.$cookies.get('tsessionid');
            if(tsessionid == null){
                 location.href = '/login.html';
                 return;

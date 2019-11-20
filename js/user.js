@@ -483,7 +483,7 @@ function reg_login(){
  * 退出成功
  */
 function logout(){
-    this.$cookies.remove('tesssionid');
+    this.$cookies.remove('tsessionid');
     this.$cookies.remove('nick_name');
     this.$cookies.remove('user_id');
 

@@ -37,7 +37,7 @@ let vm = new Vue({
             let that = this;
             axios.get("users/"+that.userId+"/groups/",{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             }).then((req)=>{
                 that.join = req.data.msg.join;
@@ -50,7 +50,7 @@ let vm = new Vue({
             let that = this;
             axios.get("users/"+that.userId+"/questions/",{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             }).then((req)=>{
                 that.questionList = req.data
@@ -62,7 +62,7 @@ let vm = new Vue({
             let that = this;
             axios.get("users/"+that.userId+"/answers/",{
                 headers:{
-                    "tsessionid": store.state.tesssionid,
+                    "tsessionid": store.state.tsessionid,
                 }
             }).then((req)=>{
                 that.answersList = req.data

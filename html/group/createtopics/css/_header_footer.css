@@ -151,7 +151,7 @@ header{width:100%;height:206px;background: #fff;}
 .full-course ul li:hover .icon-youjiantou{color:#656565}
 /*.full-course.on .header_sider_ulbox{display:none;}*/
 .full-course.hover .header_sider_ulbox{display:block;}
-.post-service{float:left;width:100%;height:auto;background-color:#24252a;color: #ccc;}
+.post-service{float:left;width:100%;height:auto;background-color:#24252a;color: #ccc;position: fixed;bottom: 0px; position: fixed; bottom: 0px;}
 .other-service{width:1200px;height:214px;margin:0 auto;}
 .other-service .service-class a{margin:5px 0 0 35px;}
 .post-service-per{width:1200px;height:135px;}

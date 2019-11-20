@@ -35,7 +35,7 @@ let vm = new Vue({
             axios.get('/groups/?c='+category,{
                 }).then(function (req) {
                     that.groupMsg = req.data;
-                if(store.state.tesssionid){
+                if(store.state.tsessionid){
                     that.notLogin = true
                 }else {
                     that.notLogin = false
@@ -90,21 +90,22 @@ let vm = new Vue({
         },
         joinGroup(n){
             let that = this;
-            tsessionid = this.$cookies.get('tesssionid');
+            let tsessionid = this.$cookies.get('tsessionid');
             if(tsessionid == null){
                 location.href = '../../login.html'
+            }else{
+                axios.post("/groups/"+n+"/members/",{
+                    "apply_reason":that.apply_reason,
+                },{
+                    headers:{
+                        tsessionid: tsessionid
+                    }
+                }).then((req)=>{
+                    console.log(req.data)
+                }).catch((err)=>{
+                    console.log(err)
+                })
             }
-            axios.post("/groups/"+n+"/members/",{
-                "apply_reason":that.apply_reason,
-            },{
-                headers:{
-                    tsessionid:tsessionid
-                }
-            }).then((req)=>{
-                console.log(req.data)
-            }).catch((err)=>{
-                console.log(err)
-            })
         }
     }
 });
