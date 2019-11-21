@@ -79,7 +79,6 @@ new Vue({
 
                 axios.post('/code/', {
                     'mobile': that.mobile
-
                 }).then((res) => {
                     console.log(res)
                 }).catch((err) => {

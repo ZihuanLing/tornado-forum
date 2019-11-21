@@ -22,3 +22,16 @@ const store = new Vuex.Store({
     }
 })
 
+
+/**
+ * 退出登录
+ */
+function logout(){
+    console.log("is loging out.")
+    this.$cookies.remove('tsessionid');
+    this.$cookies.remove('nick_name');
+    this.$cookies.remove('user_id');
+
+    location.href="/";
+
+}

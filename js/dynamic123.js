@@ -154,19 +154,25 @@ let webUrls = {
         "../js/axios.js",
         "../js/vue.js","../js/jquery.cookie.js",
         "../js/user.js","../js/changeMyInfo.js",]],
-    login:[[
-        "http://vue.projectsedu.com:8009/static/css/common_new.css",
-        "http://vue.projectsedu.com:8009/static/css/basic_new.css",
-        "http://vue.projectsedu.com:8009/static/css/logincss.css",
-        "http://vue.projectsedu.com:8009/static/css/_header_footer.css",
-        "http://vue.projectsedu.com:8009/static/css/iconfont.css"],
+    login:[
+        [
+            // "http://vue.projectsedu.com:8009/static/css/common_new.css",
+            // "http://vue.projectsedu.com:8009/static/css/basic_new.css",
+            // "http://vue.projectsedu.com:8009/static/css/logincss.css",
+            // "http://vue.projectsedu.com:8009/static/css/_header_footer.css",
+            // "http://vue.projectsedu.com:8009/static/css/iconfont.css"
+        ],
         ["js/login.js"]],
-    register:[["./css/common_new.css",
-        "./css/basic_new.css",
-        "./css/common.css",
-        "./css/_header_footer.css",
-        "./css/iconfont.css"],[
-        "./js/register.js"]],
+    register:[
+        [
+            // "/html/group/createtopics/css/common_new.css",
+            // "/html/group/createtopics/css/basic_new.css",
+            // "/html/group/createtopics/css/common.css",
+            // "/html/group/createtopics/css/_header_footer.css",
+            // "/html/group/createtopics/css/iconfont.css",
+            // "/MxForum/html/group/createtopics/css"
+        ],
+        ["./js/register.js"]],
     postList:[["../../css/common_new.css",
         "../../css/basic_new.css",
         "../../css/style.css",
