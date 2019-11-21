@@ -138,7 +138,7 @@ class SmsHandler(RedisHandler, ABC):
             for field in sms_form.errors:
                 re_data[field] = sms_form.errors[field][0]
 
-        print("Done.")
+        self.finish(re_data)
 
 
 class ProfileHandler(RedisHandler):

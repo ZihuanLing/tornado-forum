@@ -44,7 +44,8 @@ class GroupMemberHandler(RedisHandler):
         if form.validate():
             try:
                 group = await self.application.objects.get(CommunityGroup, id=int(group_id))
-                existed = await self.application.objects.get(CommunityGroupUser, community=group.id)
+                existed = await self.application.objects.get(CommunityGroupUser, community=group.id,
+                                                             user_id=self.current_user.id)
                 self.set_status(400)
                 re_data['non_field'] = '用户已经加入该小组'
             except CommunityGroup.DoesNotExist as e:
@@ -166,6 +167,7 @@ class PostHandler(RedisHandler):
                                                               community=int(group_id), status="agree")
 
             post_query = Post.extend()
+            post_query = post_query.filter(Post.group==group)
             # 根据类别进行划分
             c = self.get_argument('cate', None)
             if c == 'hot':
@@ -217,6 +219,9 @@ class PostHandler(RedisHandler):
                 }
                 post = await self.application.objects.create(Post, **post_info)
                 re_data['id'] = post.id
+                # 帖子发布成功后，小组的帖子数量加一
+                group.post_nums += 1
+                await self.application.objects.update(group)
             else:
                 self.set_status(400)
                 for field in form.errors:

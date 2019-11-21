@@ -3,7 +3,7 @@ from wtforms import StringField
 from wtforms.validators import DataRequired, Regexp, AnyOf
 # from apps.users.models import PasswordField
 
-MOBILE_REGEX = "^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
+MOBILE_REGEX = "^[1][3-9][0-9]{9}$"
 
 
 class SmsCodeForm(Form):
